@@ -1,6 +1,7 @@
 import boto3
 import click
 
+# define which profile from ~/.aws/credentials should be used to create the session
 session = boto3.Session(profile_name='shotty')
 ec2 = session.resource('ec2')
 
