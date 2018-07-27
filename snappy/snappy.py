@@ -57,6 +57,25 @@ def list_snapshots(project, list_all):
 
     return
 
+@snapshots.command('delete')
+@click.option('--project', default=None,
+    help="Only snapshots for project (tag Project:<name>)")
+
+def delete_snapshots(project):
+    "Delete EC2 snapshots"
+
+    instances = filter_instances(project)
+
+    for i in instances:
+        for v in i.volumes.all():
+            for s in v.snapshots.all():
+                print("Deleting snapshot {0}..".format(s.id))
+                if s.state != 'completed': break
+                s.delete()    
+
+    return
+
+
 @cli.group('volumes')
 def volumes():
     """Commands for volumes"""
