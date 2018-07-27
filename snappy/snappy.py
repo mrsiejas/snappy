@@ -93,7 +93,7 @@ def create_snapshots(project):
             print("Creating snapshot of {0}".format(v.id))
             v.create_snapshots(Description="Created by Snappy")
 
-return
+    return
 
 @instances.command('list')
 @click.option('--project', default=None,
