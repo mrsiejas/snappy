@@ -2,7 +2,7 @@ import boto3
 import botocore
 import click
 
-# specify profile from ~/.aws/credentials to be used
+# select profile_name from ~/.aws/credentials
 session = boto3.Session(profile_name='shotty')
 ec2 = session.resource('ec2')
 
@@ -148,8 +148,8 @@ def list_instances(project):
 
     instances = filter_instances(project)
 
+    # if Project is specified, apply filters
     if project:
-        # a list with a dictionary inside
         filters = [{'Name':'tag:Project', 'Values':[project]}]
         instances = ec2.instances.filter(Filters=filters)
         list(instances)
@@ -204,7 +204,5 @@ def start_instances(project):
     return
 
 
-
 if __name__ == "__main__":
-#    print(sys.argv)
     cli()

@@ -10,6 +10,7 @@ ipython = "*"
 
 [dev-packages]
 setuptools = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.7"
